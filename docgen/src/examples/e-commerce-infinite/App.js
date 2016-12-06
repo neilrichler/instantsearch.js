@@ -134,7 +134,7 @@ const CustomSearchBox = ({currentRefinement, refine}) =>
              className="form-control"
              id="q"/>
       <span className="input-group-btn">
-      <button className="btn btn-default"><i className="fa fa-search"></i></button>
+      <button className="btn btn-default"><i className="fa fa-searchResults"></i></button>
     </span>
     </div>
   ;
@@ -207,9 +207,9 @@ const Hit = ({item}) => {
 const CustomResults = createConnector({
   displayName: 'CustomResults',
 
-  getProvidedProps(props, state, search) {
-    const noResults = search.results ? search.results.nbHits === 0 : false;
-    return {query: state.query, noResults};
+  getProvidedProps(props, searchState, searchResults) {
+    const noResults = searchResults.results ? searchResults.results.nbHits === 0 : false;
+    return {query: searchState.query, noResults};
   },
 })(({noResults, query}) => {
   if (noResults) {
